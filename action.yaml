@@ -1,0 +1,32 @@
+name: 'GitOps Update'
+description: 'Updates a key in a gitops repository and commit it'
+inputs:
+  filename:
+    description: 'Filename to update'
+    required: true
+  tag:
+    description: "The tag to set"
+    required: true
+  github-deploy-key:
+    description: "Github deploy ssh private key to clone and commit target repository"
+    required: true
+  repo:
+    description: "Target organization and repository in form of `some-org/repo`"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Python 3.10.1
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.1
+    - name: Upgrade pip
+      run: pip install --upgrade pip
+      shell: bash
+    - name: Install dependencies
+      run: |
+        if [ -f ${{ github.action_path }}/requirements.txt ];then pip install -r ${{ github.action_path }}/requirements.txt; fi
+      shell: bash
+    - run: ${{ github.action_path }}/run.sh "${{ inputs.filename }}" "${{ inputs.tag }}" "${{ inputs.repo }}" "${{ inputs.github-deploy-key }}"
+      shell: bash
