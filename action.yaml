@@ -28,5 +28,5 @@ runs:
       run: |
         if [ -f ${{ github.action_path }}/requirements.txt ];then pip install -r ${{ github.action_path }}/requirements.txt; fi
       shell: bash
-    - run: ${{ github.action_path }}/run.sh "${{ inputs.filename }}" "${{ inputs.tag }}" "${{ inputs.repo }}" "${{ inputs.github-deploy-key }}"
+    - run: ${{ github.action_path }}/run.sh "${{ inputs.filename }}" "${{ inputs.tag }}" "${{ inputs.github-deploy-key }}" "${{ inputs.repo }}"
       shell: bash
