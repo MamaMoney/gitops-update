@@ -22,4 +22,4 @@ git config --global user.name "GitOps Update User"
 echo "$GITHUB_DEPLOY_KEY" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
-python $GITHUB_ACTION_PATH/update.py --file $FILE_NAME --tag $TAG --value $REPO
+python $GITHUB_ACTION_PATH/update.py --file $FILE_NAME --tag $TAG --repo $REPO
