@@ -4,7 +4,7 @@ set -e
 FILE_NAME=$1
 TAG=$2
 GITHUB_DEPLOY_KEY=$3
-GITHUB_ORG_AND_REPO=$4
+REPO=$4
 
 mkdir -p ~/.ssh
 
